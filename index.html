@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Where is the alpha in generative AI? · Remix Partners for S2G</title>
+<meta name="description" content="A scenario reading of S2G's Financing Reality, applied to the alpha question in generative AI. Prepared by Remix Partners." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #1D1D1C;
+    --ink-soft: #3a3a39;
+    --ink-muted: rgba(255,255,255,0.62);
+    --ink-line: rgba(255,255,255,0.14);
+    --paper: #FFFFFF;
+    --paper-deep: #f2f3f5;
+    --accent: #E0F61F;
+    --accent-strong: #c8db00;
+    --sage: #5D6E96;
+    --slate: #A77E5A;
+    --mauve: #A04473;
+    --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    color: var(--paper);
+    background: var(--ink);
+    line-height: 1.55;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  ::selection { background: var(--accent); color: var(--ink); }
+
+  /* Layout */
+  .wrap { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+  .narrow { max-width: 760px; }
+  section { padding: 110px 0; position: relative; }
+  section.tight { padding: 70px 0; }
+
+  /* Typography */
+  h1, h2, h3, h4 { font-family: var(--serif); font-weight: 400; letter-spacing: -0.02em; line-height: 1.05; }
+  .display { font-size: clamp(2.6rem, 6.5vw, 5.4rem); font-weight: 400; line-height: 0.98; letter-spacing: -0.03em; }
+  h2.section-title { font-size: clamp(2rem, 4vw, 3.3rem); line-height: 1.04; }
+  h3 { font-size: clamp(1.55rem, 2.6vw, 2.1rem); line-height: 1.1; }
+  h4 { font-size: 1.25rem; line-height: 1.25; font-weight: 500; }
+  p { margin-bottom: 1.1em; color: var(--ink-muted); font-size: 1.02rem; line-height: 1.68; }
+  p strong, .body strong { color: var(--paper); font-weight: 600; }
+  p em { color: rgba(255,255,255,0.78); }
+  .lead { font-size: 1.15rem; color: rgba(255,255,255,0.78); line-height: 1.6; }
+  .lead-large { font-size: 1.35rem; line-height: 1.55; color: rgba(255,255,255,0.88); font-weight: 300; }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    display: inline-block;
+  }
+  .eyebrow.muted { color: rgba(255,255,255,0.5); }
+  .meta-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+  .accent-text { color: var(--accent); }
+  .serif { font-family: var(--serif); }
+
+  /* Top bar */
+  .topbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    padding: 18px 28px;
+    display: flex; align-items: center; justify-content: space-between;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    background: rgba(29,29,28,0.65);
+    border-bottom: 1px solid var(--ink-line);
+  }
+  .topbar .brand {
+    font-family: var(--mono); font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--paper);
+  }
+  .topbar .for {
+    font-family: var(--mono); font-size: 0.7rem;
+    letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55);
+  }
+  .topbar .for span { color: var(--accent); }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding-top: 80px; padding-bottom: 60px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -10%; right: -15%;
+    width: 60vw; height: 60vw;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(224,246,31,0.08), transparent 60%);
+    pointer-events: none; z-index: 0;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -20%; left: -10%;
+    width: 70vw; height: 70vw;
+    background:
+      radial-gradient(circle at 70% 60%, rgba(93,110,150,0.10), transparent 55%);
+    pointer-events: none; z-index: 0;
+  }
+  .hero-inner { position: relative; z-index: 1; }
+  .hero h1 { max-width: 14ch; margin-bottom: 1.5rem; }
+  .hero .sub {
+    font-size: 1.2rem; max-width: 56ch; line-height: 1.55;
+    color: rgba(255,255,255,0.72); font-weight: 300;
+    margin-bottom: 3rem;
+  }
+  .hero-meta {
+    display: flex; gap: 3rem; flex-wrap: wrap;
+    padding-top: 2rem; border-top: 1px solid var(--ink-line);
+    max-width: 720px;
+  }
+  .hero-meta dt {
+    font-family: var(--mono); font-size: 0.68rem;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 0.4rem;
+  }
+  .hero-meta dd {
+    font-size: 0.95rem; color: var(--paper); font-weight: 400;
+  }
+  .scroll-hint {
+    position: absolute; bottom: 38px; left: 50%; transform: translateX(-50%);
+    font-family: var(--mono); font-size: 0.65rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    z-index: 1;
+  }
+  .scroll-hint::after {
+    content: ''; display: block; width: 1px; height: 32px;
+    background: rgba(255,255,255,0.3); margin: 12px auto 0;
+  }
+
+  /* Sections shared */
+  .section-head {
+    display: flex; flex-direction: column; gap: 0.5rem;
+    margin-bottom: 3.5rem;
+    max-width: 880px;
+  }
+  .section-head .lead {
+    margin-top: 1.2rem; max-width: 65ch;
+  }
+
+  /* Frame section */
+  .frame { background: var(--ink); border-top: 1px solid var(--ink-line); }
+  .frame-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+    align-items: start;
+  }
+  .frame-grid blockquote {
+    font-family: var(--serif); font-size: 1.45rem; line-height: 1.32;
+    font-weight: 300; letter-spacing: -0.01em;
+    color: rgba(255,255,255,0.92);
+    border-left: 2px solid var(--accent);
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .frame-grid cite {
+    font-family: var(--mono); font-size: 0.72rem;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5); font-style: normal;
+  }
+
+  /* The formula */
+  .formula-band {
+    background: var(--accent);
+    color: var(--ink);
+    padding: 90px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .formula-band::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 18% 30%, rgba(29,29,28,0.05), transparent 50%),
+      radial-gradient(circle at 82% 70%, rgba(29,29,28,0.04), transparent 50%);
+  }
+  .formula-band .eyebrow { color: var(--ink); }
+  .formula {
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(2rem, 4.8vw, 3.6rem);
+    line-height: 1.08; letter-spacing: -0.02em;
+    color: var(--ink);
+    max-width: 18ch; margin: 0 auto;
+    position: relative; z-index: 1;
+  }
+  .formula em { font-style: italic; }
+  .formula .op { font-style: normal; color: var(--ink-soft); }
+  .formula-source {
+    margin-top: 2rem;
+    font-family: var(--mono); font-size: 0.72rem;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(29,29,28,0.65);
+  }
+
+  /* Predetermined elements */
+  .predets { background: #232322; border-top: 1px solid var(--ink-line); }
+  .predets-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem 2.5rem;
+    margin-top: 2rem;
+  }
+  .predet {
+    padding: 1.75rem 0 1.75rem 1.5rem;
+    border-left: 2px solid var(--ink-line);
+    transition: border-color 0.25s;
+  }
+  .predet:hover { border-left-color: var(--accent); }
+  .predet h4 {
+    font-family: var(--sans); font-weight: 600; font-size: 0.95rem;
+    color: var(--paper); margin-bottom: 0.6rem; letter-spacing: 0;
+  }
+  .predet p { font-size: 0.92rem; margin-bottom: 0; line-height: 1.55; }
+  .predet .num {
+    font-family: var(--mono); font-size: 0.7rem;
+    letter-spacing: 0.12em; color: var(--accent); margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  /* Axes section */
+  .axes { background: var(--ink); border-top: 1px solid var(--ink-line); }
+  .axes-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+    margin-top: 2rem;
+  }
+  .axis-card {
+    padding: 2.5rem; border: 1px solid var(--ink-line);
+    border-radius: 8px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+  }
+  .axis-card .meta-label { margin-bottom: 0.75rem; }
+  .axis-card h3 { margin-bottom: 1.5rem; }
+  .axis-poles {
+    display: flex; justify-content: space-between; gap: 2rem;
+    margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--ink-line);
+  }
+  .pole { flex: 1; }
+  .pole .pole-name {
+    font-family: var(--mono); font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.5rem;
+  }
+  .pole .pole-desc { font-size: 0.88rem; line-height: 1.5; color: var(--ink-muted); }
+
+  /* The 2x2 matrix */
+  .matrix-section {
+    background: var(--paper); color: var(--ink);
+    padding: 120px 0;
+  }
+  .matrix-section .eyebrow { color: var(--ink); opacity: 0.65; }
+  .matrix-section h2 { color: var(--ink); }
+  .matrix-section .lead { color: var(--ink-soft); }
+  .matrix-section p { color: var(--ink-soft); }
+  .matrix-wrap {
+    margin: 4rem auto 0; max-width: 940px; position: relative;
+  }
+  .matrix-axes {
+    position: relative; padding: 60px 0 60px 80px;
+  }
+  .axis-y {
+    position: absolute; left: 0; top: 60px; bottom: 60px;
+    width: 60px; display: flex; flex-direction: column;
+    justify-content: space-between; align-items: center;
+  }
+  .axis-y .label {
+    writing-mode: vertical-rl; transform: rotate(180deg);
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ink);
+  }
+  .axis-x {
+    display: flex; justify-content: space-between; padding-left: 80px;
+    margin-top: 16px;
+  }
+  .axis-x .label {
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ink);
+  }
+  .axis-name {
+    font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: rgba(29,29,28,0.5);
+    margin-top: 6px; margin-bottom: 14px;
+  }
+  .matrix-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    border: 1px solid var(--ink); position: relative;
+  }
+  .quadrant {
+    padding: 2.5rem 2rem; min-height: 280px;
+    position: relative; display: flex; flex-direction: column;
+    text-decoration: none; color: inherit;
+    transition: background 0.2s;
+    border-right: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    cursor: pointer;
+  }
+  .quadrant:nth-child(2n) { border-right: none; }
+  .quadrant:nth-child(n+3) { border-bottom: none; }
+  .quadrant:hover { background: var(--accent); }
+  .quadrant:hover .q-id, .quadrant:hover .q-name, .quadrant:hover .q-sub, .quadrant:hover .q-arrow { color: var(--ink); }
+  .q-id {
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.2em; color: rgba(29,29,28,0.45);
+    margin-bottom: 0.75rem;
+  }
+  .q-name {
+    font-family: var(--serif); font-size: 1.95rem; font-weight: 400;
+    line-height: 1.05; letter-spacing: -0.02em; color: var(--ink);
+    margin-bottom: 1rem;
+  }
+  .q-sub {
+    font-size: 0.95rem; color: var(--ink-soft); line-height: 1.45;
+    flex: 1;
+  }
+  .q-arrow {
+    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: rgba(29,29,28,0.55);
+    margin-top: 1.25rem;
+  }
+  .q-arrow::after { content: ' →'; }
+  .quadrant.featured { background: var(--ink); color: var(--paper); }
+  .quadrant.featured .q-id { color: var(--accent); }
+  .quadrant.featured .q-name { color: var(--paper); }
+  .quadrant.featured .q-sub { color: rgba(255,255,255,0.7); }
+  .quadrant.featured .q-arrow { color: var(--accent); }
+  .quadrant.featured:hover { background: var(--accent); color: var(--ink); }
+  .quadrant.featured:hover .q-name,
+  .quadrant.featured:hover .q-id,
+  .quadrant.featured:hover .q-sub,
+  .quadrant.featured:hover .q-arrow { color: var(--ink); }
+
+  /* Scenario sections */
+  .scenario {
+    padding: 110px 0;
+    border-top: 1px solid var(--ink-line);
+  }
+  .scenario-A { background: #18181A; }
+  .scenario-B { background: #1F1A18; }
+  .scenario-C { background: #181C1B; }
+  .scenario-D {
+    background: var(--accent);
+    color: var(--ink);
+  }
+  .scenario-D .eyebrow { color: var(--ink); opacity: 0.6; }
+  .scenario-D h2, .scenario-D h3, .scenario-D h4, .scenario-D strong { color: var(--ink); }
+  .scenario-D p { color: var(--ink-soft); }
+  .scenario-D .meta-label { color: rgba(29,29,28,0.55); }
+  .scenario-D .bordered-block { border-color: rgba(29,29,28,0.15); }
+  .scenario-D .stat .stat-label { color: rgba(29,29,28,0.55); }
+  .scenario-D .stat .stat-value { color: var(--ink); }
+  .scenario-D .pull-quote { color: var(--ink); border-color: rgba(29,29,28,0.25); }
+  .scenario-D .bullets li { color: var(--ink-soft); }
+  .scenario-D .bullets li strong { color: var(--ink); }
+  .scenario-D .bullets li::marker { color: var(--ink); }
+  .scenario-D .what-where-grid > div { border-color: rgba(29,29,28,0.15); }
+  .scenario-D .what-where-grid h4 { color: var(--ink); }
+
+  .scenario-head {
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: end;
+    margin-bottom: 4rem; padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--ink-line);
+  }
+  .scenario-D .scenario-head { border-color: rgba(29,29,28,0.18); }
+  .scenario-tag {
+    display: inline-flex; align-items: center; gap: 12px;
+  }
+  .scenario-letter {
+    font-family: var(--serif); font-size: 4.5rem; line-height: 0.85;
+    font-weight: 400; color: var(--accent);
+  }
+  .scenario-D .scenario-letter { color: var(--ink); }
+  .scenario-position {
+    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.16em;
+    text-transform: uppercase; color: rgba(255,255,255,0.55);
+    margin-bottom: 0.4rem;
+  }
+  .scenario-D .scenario-position { color: rgba(29,29,28,0.55); }
+  .scenario-name {
+    font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 4rem); font-weight: 400;
+    line-height: 1.0; letter-spacing: -0.025em;
+  }
+  .scenario-oneline {
+    font-family: var(--serif); font-size: 1.55rem;
+    line-height: 1.35; font-weight: 300; letter-spacing: -0.01em;
+    color: rgba(255,255,255,0.92);
+    max-width: 42ch; font-style: italic;
+  }
+  .scenario-D .scenario-oneline { color: var(--ink); }
+
+  .scenario-body { display: grid; grid-template-columns: 1fr; gap: 3rem; max-width: 940px; }
+  .scenario-body > section { padding-top: 0.5rem; }
+  .scenario-body h3 {
+    font-family: var(--serif); font-size: 1.55rem; margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+  .scenario-body h4 {
+    font-family: var(--mono); font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.8rem;
+  }
+  .scenario-D .scenario-body h4 { color: var(--ink); opacity: 0.65; }
+
+  /* Bullets and lists */
+  .bullets { list-style: none; padding-left: 0; }
+  .bullets li {
+    padding-left: 1.6rem; position: relative;
+    margin-bottom: 0.8rem; color: var(--ink-muted);
+    line-height: 1.55; font-size: 0.98rem;
+  }
+  .bullets li::before {
+    content: '→'; position: absolute; left: 0; top: 0;
+    color: var(--accent); font-family: var(--mono); font-weight: 600;
+  }
+  .scenario-D .bullets li::before { color: var(--ink); opacity: 0.6; }
+
+  /* Pull-quote */
+  .pull-quote {
+    font-family: var(--serif); font-size: 1.6rem; font-weight: 300;
+    line-height: 1.35; letter-spacing: -0.01em;
+    color: var(--paper);
+    padding: 2rem 0 2rem 2rem;
+    border-left: 3px solid var(--accent);
+    margin: 1.5rem 0;
+    max-width: 36ch;
+  }
+
+  /* Stat row */
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+    padding: 2.5rem 0; border-top: 1px solid var(--ink-line);
+    border-bottom: 1px solid var(--ink-line);
+  }
+  .scenario-D .stats-grid { border-color: rgba(29,29,28,0.18); }
+  .stat { }
+  .stat-label {
+    font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: rgba(255,255,255,0.5);
+    margin-bottom: 0.5rem;
+  }
+  .stat-value {
+    font-family: var(--serif); font-size: 2.2rem; font-weight: 400;
+    line-height: 1; color: var(--paper);
+  }
+  .stat-detail { margin-top: 0.5rem; font-size: 0.85rem; color: var(--ink-muted); line-height: 1.45; }
+
+  /* What worked / what didn't */
+  .what-where-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem;
+    margin-top: 1.5rem;
+  }
+  .what-where-grid > div { padding-top: 1.25rem; border-top: 1px solid var(--ink-line); }
+
+  /* Cross-scenario strategy */
+  .strategy { background: #232322; border-top: 1px solid var(--ink-line); padding: 120px 0; }
+  .strategy-grid {
+    display: grid; grid-template-columns: 1.4fr 1fr; gap: 5rem;
+  }
+  .strategy-table {
+    margin-top: 1.5rem;
+    border: 1px solid var(--ink-line);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .strategy-row {
+    display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;
+    border-bottom: 1px solid var(--ink-line);
+  }
+  .strategy-row:last-child { border-bottom: none; }
+  .strategy-row > div {
+    padding: 1rem 1.2rem; font-size: 0.85rem;
+    border-right: 1px solid var(--ink-line);
+    display: flex; align-items: center;
+  }
+  .strategy-row > div:last-child { border-right: none; }
+  .strategy-row.header > div {
+    font-family: var(--mono); font-size: 0.68rem; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.03);
+  }
+  .strategy-row .strat-name { font-weight: 600; color: var(--paper); font-size: 0.9rem; }
+  .grade {
+    width: 38px; height: 22px; border-radius: 4px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 0.7rem; font-weight: 600;
+  }
+  .grade.excellent { background: var(--accent); color: var(--ink); }
+  .grade.strong { background: rgba(224,246,31,0.55); color: var(--ink); }
+  .grade.moderate { background: rgba(167,126,90,0.55); color: var(--paper); }
+  .grade.weak { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.55); }
+
+  /* The strategic read */
+  .strategic-read .pull-quote {
+    font-size: 1.85rem; max-width: 38ch;
+  }
+
+  /* Closing tease */
+  .closing {
+    padding: 130px 0 100px;
+    background: var(--ink);
+    border-top: 1px solid var(--ink-line);
+    text-align: left;
+  }
+  .closing .display { max-width: 18ch; margin-bottom: 1.5rem; }
+  .closing .lead-large { max-width: 56ch; margin-bottom: 2.5rem; }
+  .closing .signoff {
+    margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--ink-line);
+    display: flex; justify-content: space-between; align-items: end; flex-wrap: wrap; gap: 1.5rem;
+  }
+  .signoff .from {
+    font-family: var(--mono); font-size: 0.7rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+  .signoff .for-block {
+    text-align: right;
+    font-family: var(--mono); font-size: 0.7rem;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+  .signoff .for-block .name { color: var(--accent); font-weight: 600; }
+
+  /* Footer */
+  footer {
+    padding: 3rem 0; border-top: 1px solid var(--ink-line);
+    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: rgba(255,255,255,0.4);
+    text-align: center;
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    section { padding: 70px 0; }
+    .wrap { padding: 0 22px; }
+    .display { font-size: 2.4rem; }
+    .hero .sub { font-size: 1.05rem; }
+    .hero-meta { gap: 1.5rem; }
+    .hero-meta > div { flex: 1 0 calc(50% - 0.75rem); }
+    .frame-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .frame-grid blockquote { font-size: 1.2rem; }
+    .predets-grid { grid-template-columns: 1fr; }
+    .axes-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .matrix-section { padding: 70px 0; }
+    .matrix-axes { padding: 30px 0 30px 40px; }
+    .axis-y { width: 40px; }
+    .axis-x { padding-left: 40px; }
+    .quadrant { padding: 1.75rem 1.4rem; min-height: 240px; }
+    .q-name { font-size: 1.5rem; }
+    .scenario-head { grid-template-columns: 1fr; gap: 2rem; align-items: start; }
+    .scenario-letter { font-size: 3.2rem; }
+    .scenario-name { font-size: 2.2rem; }
+    .scenario-oneline { font-size: 1.2rem; }
+    .scenario-body h3 { font-size: 1.3rem; }
+    .stats-grid { grid-template-columns: 1fr; gap: 1.5rem; padding: 1.5rem 0; }
+    .what-where-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .strategy-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .strategy-row { grid-template-columns: 1.6fr 1fr 1fr; }
+    .strategy-row > div:nth-child(4),
+    .strategy-row > div:nth-child(5) { display: none; }
+    .pull-quote { font-size: 1.2rem; padding: 1.2rem 0 1.2rem 1.3rem; }
+    .closing .display { font-size: 2.4rem; }
+    .formula { font-size: 1.8rem; }
+    .signoff { flex-direction: column; align-items: start; }
+    .signoff .for-block { text-align: left; }
+  }
+
+  /* Reveal on scroll */
+  .reveal {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  /* Password gate overlay */
+  .gate-overlay {
+    position: fixed;
+    inset: 0;
+    background: var(--ink);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    overflow: hidden;
+  }
+  .gate-overlay::before {
+    content: '';
+    position: absolute;
+    top: -10%; right: -15%;
+    width: 60vw; height: 60vw;
+    background: radial-gradient(circle at 30% 30%, rgba(224,246,31,0.08), transparent 60%);
+    pointer-events: none;
+  }
+  .gate-inner {
+    max-width: 440px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+  .gate-inner h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 2.4rem;
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.85rem;
+  }
+  .gate-inner .sub {
+    font-size: 1rem;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.68);
+    margin-bottom: 2.25rem;
+  }
+  .gate-inner .sub em { color: rgba(255,255,255,0.85); font-style: italic; }
+  .gate-inner form { display: flex; flex-direction: column; gap: 0.85rem; }
+  .gate-inner input[type="password"] {
+    width: 100%;
+    padding: 0.95rem 1rem;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 6px;
+    color: #fff;
+    font-size: 1rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .gate-inner input[type="password"]:focus { border-color: var(--accent); }
+  .gate-inner button {
+    padding: 0.95rem 1.25rem;
+    background: var(--accent);
+    color: var(--ink);
+    border: none;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    font-family: var(--mono);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .gate-inner button:hover { background: var(--accent-strong); }
+  .gate-inner .err { color: #ff6b6b; font-size: 0.85rem; margin-top: 0.4rem; display: none; }
+  .gate-inner .meta {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.42);
+  }
+  .gate-inner .meta .for { color: rgba(255,255,255,0.7); }
+  .report-content { display: none; }
+  body.unlocked .report-content { display: block; }
+  body.unlocked .gate-overlay { display: none; }
+</style>
+</head>
+<body>
+
+<div class="gate-overlay" id="gate-overlay">
+  <div class="gate-inner">
+    <span class="eyebrow">Remix Partners &middot; for S2G Investments</span>
+    <h1>Where is the alpha in generative AI?</h1>
+    <p class="sub">A short scenario reading of S2G's <em>Financing Reality</em>, run through the Shell scenario method. Password protected.</p>
+    <form id="gate-form">
+      <input type="password" id="pw" placeholder="Password" autocomplete="off" autofocus />
+      <button type="submit">Enter</button>
+      <p class="err" id="err">Incorrect password.</p>
+    </form>
+    <div class="meta">
+      Remix Partners &middot; <span class="for">For S2G Investments</span> &middot; May 2026
+    </div>
+  </div>
+</div>
+
+<div class="report-content">
+
+<div class="topbar">
+  <div class="brand">REMIX PARTNERS</div>
+  <div class="for">FOR <span>S2G INVESTMENTS</span></div>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap hero-inner">
+    <span class="eyebrow">A SCENARIO READING &middot; MAY 2026</span>
+    <h1 class="display">Where is the alpha in&nbsp;generative AI?</h1>
+    <p class="sub">A short reading of S2G's <em>Financing Reality</em>, run through the Shell scenario method. Four divergent futures for the next 3 to 7 years. One question: when the dust clears, who has captured the spread, and what capital architecture did they build to do it?</p>
+    <dl class="hero-meta">
+      <div>
+        <dt>WORLDVIEW</dt>
+        <dd>Sanjeev Krishnan, <em>Financing Reality</em></dd>
+      </div>
+      <div>
+        <dt>METHOD</dt>
+        <dd>Shell scenario panel, 6 specialists</dd>
+      </div>
+      <div>
+        <dt>HORIZON</dt>
+        <dd>2026 to 2032</dd>
+      </div>
+      <div>
+        <dt>OUTPUT</dt>
+        <dd>4 scenarios, 2 axes, 1 thesis</dd>
+      </div>
+    </dl>
+  </div>
+  <div class="scroll-hint">Read on</div>
+</section>
+
+<!-- ============ FRAME ============ -->
+<section class="frame">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">THE LENS</span>
+      <h2 class="section-title">A theory of finance, not&nbsp;a theory of AI.</h2>
+    </div>
+    <div class="frame-grid">
+      <div>
+        <blockquote>"The history of global markets is a series of jagged step-functions triggered by massive structural transitions. Alpha concentrates with the market builders who move early to deploy fit-for-purpose capital."</blockquote>
+        <cite>S2G Investments &middot; Financing Reality &middot; May 2026</cite>
+      </div>
+      <div class="body">
+        <p>S2G's argument, in one line: across 300 years of capitalism, alpha has accrued not to whoever built the technology but to whoever designed the <strong>capital architecture</strong> matched to the new economic reality, before conventional markets were equipped to underwrite it.</p>
+        <p>The joint-stock company preceded the East India trade it financed. The bond syndicate preceded the rail network it consolidated. The venture limited partnership preceded the semiconductor industry it capitalized. <strong>The structure arrives before the category it enables.</strong></p>
+        <p>If that pattern holds, the question for generative AI is not "is it valuable?" (manifestly), but "<em>where is the value that conventional capital cannot yet price, and what instrument must be built to price it?</em>"</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE FORMULA ============ -->
+<section class="formula-band">
+  <div class="wrap">
+    <span class="eyebrow">THE S2G FORMULA</span>
+    <p class="formula">
+      Alpha&nbsp;<span class="op">=</span><br />
+      Rising Economic Value<br />
+      <span class="op">&minus;</span> Lagging Financeability
+    </p>
+    <p class="formula-source">Financing Reality &middot; p.33</p>
+  </div>
+</section>
+
+<!-- ============ PREDETERMINED ============ -->
+<section class="predets">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">PREDETERMINED ELEMENTS</span>
+      <h2 class="section-title">What is already locked in.</h2>
+      <p class="lead">Six structural facts that hold across every scenario. The four futures diverge on what happens around them, not on whether they are true.</p>
+    </div>
+    <div class="predets-grid">
+      <div class="predet">
+        <span class="num">01 &middot; COMPUTE</span>
+        <h4>Hyperscaler capex is a freight train.</h4>
+        <p>$400B in 2025 across MSFT, GOOG, META, AMZN, ORCL. Trending to $600-700B by 2027. Rubin and Rubin Ultra taped out. The compute is being built whether or not demand materializes; this is now a sunk-cost dynamic, not a demand-pull one.</p>
+      </div>
+      <div class="predet">
+        <span class="num">02 &middot; POWER</span>
+        <h4>Power is the binding constraint, not chips.</h4>
+        <p>US data center demand grows from 415 TWh (2024) to roughly 1,000 TWh by 2030. Interconnection queue at 2,300-2,600 GW. Gas turbines have 5-year lead times. SMRs are 2030+. Behind-the-meter generation is a predetermined winner.</p>
+      </div>
+      <div class="predet">
+        <span class="num">03 &middot; CAPITAL</span>
+        <h4>The software premium has reset.</h4>
+        <p>SaaS EV/Revenue compressed from 6.7x (2021) to 3.1x (Q1 2026). Per-seat subscription is being replaced by token, compute, and outcome billing. Thoma Bravo wound down its growth-equity strategy in April 2026. The mandate built for the last decade no longer fits.</p>
+      </div>
+      <div class="predet">
+        <span class="num">04 &middot; GEOPOLITICS</span>
+        <h4>Partial bifurcation, not full decoupling.</h4>
+        <p>US export controls commit to a permanent 2-3 process-node gap with China. ~90% of leading-edge logic fabricated within 180km of the Taiwan Strait. Gulf sovereign capital (G42, HUMAIN) emerges as a credible third pole by 2028.</p>
+      </div>
+      <div class="predet">
+        <span class="num">05 &middot; CLIMATE</span>
+        <h4>2.5&deg;C is the working assumption.</h4>
+        <p>UN Environment Programme Emissions Gap 2025 puts end-of-century warming at 2.3-2.5&deg;C under full pledges, 2.8&deg;C under current policy. $746B of US weather/climate disaster losses 2020-24, 8x the 1980s baseline. AI infrastructure and physical risk collide.</p>
+      </div>
+      <div class="predet">
+        <span class="num">06 &middot; DEMOGRAPHICS</span>
+        <h4>The headwind is set for the horizon.</h4>
+        <p>Working-age populations contract. Agriculture's average operator is 58. One in three EU electrical engineers is 50+. Automation is being sold as the answer, but the buildout itself requires the labor the demographics already deny.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE AXES ============ -->
+<section class="axes">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">THE TWO AXES</span>
+      <h2 class="section-title">What we don't know that&nbsp;matters most.</h2>
+      <p class="lead">Six specialists (futurist, economist, geopolitician, anthropologist, ecologist, contrarian) converged on two uncertainties that split the future into genuinely different addresses for alpha.</p>
+    </div>
+    <div class="axes-grid">
+      <div class="axis-card">
+        <div class="meta-label">AXIS X</div>
+        <h3>Where does value capture concentrate?</h3>
+        <p>Does the rent stay at the compute and model layer, or does it diffuse into applications and the physical economy?</p>
+        <div class="axis-poles">
+          <div class="pole">
+            <div class="pole-name">&larr; Stack</div>
+            <div class="pole-desc">Rent stays at the bottleneck infrastructure. NVIDIA, TSMC, hyperscalers, two or three frontier labs. Apps stay thin.</div>
+          </div>
+          <div class="pole">
+            <div class="pole-name">World &rarr;</div>
+            <div class="pole-desc">Model and inference commoditize. Productivity surplus flows into the AI-coupled physical economy.</div>
+          </div>
+        </div>
+      </div>
+      <div class="axis-card">
+        <div class="meta-label">AXIS Y</div>
+        <h3>Do constraints hold or release?</h3>
+        <p>Friction regime. Does the system buildout proceed smoothly, or do power, geopolitics, trust, and talent bind hard?</p>
+        <div class="axis-poles">
+          <div class="pole">
+            <div class="pole-name">&uarr; Constrained</div>
+            <div class="pole-desc">Chokepoints bite. Capital structure becomes the binding fight; the financeability gap stays open.</div>
+          </div>
+          <div class="pole">
+            <div class="pole-name">&darr; Frictionless</div>
+            <div class="pole-desc">Constraints release. The system builds out smoothly. Off-the-shelf instruments work.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE MATRIX ============ -->
+<section class="matrix-section" id="matrix">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">FOUR SCENARIOS</span>
+      <h2 class="section-title">A 2 by 2 of futures.</h2>
+      <p class="lead">Click a quadrant to read the scenario. The highlighted quadrant is the home field of S2G's worldview, named to echo the title of their own report.</p>
+    </div>
+    <div class="matrix-wrap">
+      <div class="matrix-axes">
+        <div class="axis-y">
+          <div class="label">&uarr; Constrained</div>
+          <div class="label">Frictionless &darr;</div>
+        </div>
+        <div class="axis-name" style="position:absolute; left:-8px; top: 50%; transform: rotate(-90deg); transform-origin: left top;">Friction regime</div>
+        <div class="matrix-grid">
+          <a href="#scenario-B" class="quadrant">
+            <div class="q-id">B &middot; STACK &times; CONSTRAINED</div>
+            <div class="q-name">The Chokepoint Republic</div>
+            <div class="q-sub">Constraints bite. Value stays at the compute and model layer, but the rent is rentier, not productive. Whoever owns the bottleneck owns the decade.</div>
+            <div class="q-arrow">Read scenario</div>
+          </a>
+          <a href="#scenario-D" class="quadrant featured">
+            <div class="q-id">D &middot; WORLD &times; CONSTRAINED</div>
+            <div class="q-name">Financing Reality</div>
+            <div class="q-sub">Value diffuses into the physical economy and constraints bite. The financeability gap stays open. Capital architecture is the alpha. The joint-stock-company moment.</div>
+            <div class="q-arrow">Read scenario</div>
+          </a>
+          <a href="#scenario-A" class="quadrant">
+            <div class="q-id">A &middot; STACK &times; FRICTIONLESS</div>
+            <div class="q-name">The Magnificent Seven Compound</div>
+            <div class="q-sub">Value stays at the stack; constraints release smoothly. The honest answer is "buy the megacaps and go to lunch." The consensus is correct.</div>
+            <div class="q-arrow">Read scenario</div>
+          </a>
+          <a href="#scenario-C" class="quadrant">
+            <div class="q-id">C &middot; WORLD &times; FRICTIONLESS</div>
+            <div class="q-name">Cambrian Atoms</div>
+            <div class="q-sub">AI penetrates the physical economy at the operator layer; the buildout proceeds. The alpha is operational, not architectural. Operators win bigger than financiers.</div>
+            <div class="q-arrow">Read scenario</div>
+          </a>
+        </div>
+        <div class="axis-x">
+          <div class="label">&larr; Stack</div>
+          <div class="label">World &rarr;</div>
+        </div>
+        <div class="axis-name" style="text-align:center; padding-left: 80px;">Value capture locus</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCENARIO A ============ -->
+<section class="scenario scenario-A" id="scenario-A">
+  <div class="wrap">
+    <div class="scenario-head">
+      <div>
+        <div class="scenario-tag">
+          <span class="scenario-letter">A</span>
+          <div>
+            <div class="scenario-position">STACK &times; FRICTIONLESS</div>
+            <div class="scenario-name">The Magnificent<br />Seven Compound</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="scenario-oneline">"The consensus is correct. Value stays at the compute and model layer; the system builds out smoothly. Buy the megacaps and go to lunch."</p>
+      </div>
+    </div>
+    <div class="scenario-body">
+
+      <section>
+        <h3>The world in 2030.</h3>
+        <p>By late 2029 the consensus AI trade has been vindicated in the most boring way possible. NVIDIA, Microsoft, Google, Meta, Amazon, Oracle, and TSMC have compounded earnings at 25 to 35% CAGR for six years. Hyperscaler capex peaked at $750B in 2027 and is plateauing at a $500B-per-year steady state. The interconnection queue is long but ERCOT, MISO South, and the Gulf states cleared enough power to feed the buildout. The IRA's transmission provisions worked. Three SMRs operate in Wyoming and Tennessee, twenty more under construction.</p>
+        <p>Frontier models continue to lead open-weight models by 12 to 18 months and that gap is stable. The four-firm foundation-lab oligopoly is durable. Application-layer companies live, die, and consolidate at 40%+ annual churn. A few breakouts reach scale; their margins are thin.</p>
+        <p>The physical-economy AI thesis quietly disappoints. Farmers do adopt yield-prediction and pest-detection vision systems, but the productivity gain is 3 to 6% per year, real but not transformative, and it diffuses to consumers via lower prices rather than to operators or investors.</p>
+      </section>
+
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-label">MAGNIFICENT 7 EARNINGS</div>
+          <div class="stat-value">25-35%</div>
+          <div class="stat-detail">CAGR through 2029</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">HYPERSCALER CAPEX</div>
+          <div class="stat-value">$500B</div>
+          <div class="stat-detail">steady state by 2030</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">PHYS-ECON AI LIFT</div>
+          <div class="stat-value">3-6%</div>
+          <div class="stat-detail">per year, captured by consumers</div>
+        </div>
+      </div>
+
+      <div class="what-where-grid">
+        <div>
+          <h4>Where the alpha lived</h4>
+          <ul class="bullets">
+            <li>NVIDIA equity, ~6x return</li>
+            <li>TSMC, ASML, Applied Materials, picks-and-shovels picks-and-shovels, 3-4x</li>
+            <li>Hyperscaler equity as the leveraged AI play, 3x</li>
+            <li>Foundation-lab secondaries for LPs who got in before 2025</li>
+            <li>Behind-the-meter power as a niche infrastructure trade, bond-plus</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Where the alpha did NOT live</h4>
+          <ul class="bullets">
+            <li>AI-applied-to-agriculture rollups (the Climate Corporation graveyard expanded)</li>
+            <li>Industrial AI verticals (captured by AspenTech, GE Vernova, Siemens, Hexagon)</li>
+            <li>Sovereign AI outside the Gulf and Singapore</li>
+            <li>Generalist agent companies trying to disintermediate enterprise software</li>
+            <li>Capital-structure innovations targeting the missing middle</li>
+          </ul>
+        </div>
+      </div>
+
+      <section>
+        <h3>What this means for S2G.</h3>
+        <p>The scenario the <em>Financing Reality</em> report implicitly argues against. If it unfolds, the three-strategy framework still functions for existing sectors (food, energy, oceans) but the AI overlay does not produce the alpha S2G expects. The Special Opportunities strategy still works on its own merits. The Growth Equity strategy struggles. The Bespoke Funds strategy still earns its keep but does not benefit from an AI-specific tailwind.</p>
+        <p class="pull-quote">"The consensus is correct, and S2G's relative advantage is in sector knowledge, not in capital-architecture differentiation. The alpha thesis dissolves into 'be a good sector specialist.'"</p>
+        <p><strong>Panel weighting: ~25-30%.</strong> Plausible but not the central case. Requires friction to clear faster than the predetermined elements suggest, no Taiwan-class disruption, and the trust layer to form without institutional innovation.</p>
+      </section>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCENARIO B ============ -->
+<section class="scenario scenario-B" id="scenario-B">
+  <div class="wrap">
+    <div class="scenario-head">
+      <div>
+        <div class="scenario-tag">
+          <span class="scenario-letter">B</span>
+          <div>
+            <div class="scenario-position">STACK &times; CONSTRAINED</div>
+            <div class="scenario-name">The Chokepoint<br />Republic</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="scenario-oneline">"Constraints bite hard. Value stays concentrated at the stack, but the rent is rentier, not productive. Whoever owns the bottleneck owns the decade."</p>
+      </div>
+    </div>
+    <div class="scenario-body">
+
+      <section>
+        <h3>The world in 2030.</h3>
+        <p>The buildout stalls in slow motion. Through 2026 and 2027 the interconnection queue grows faster than it clears, by mid-2027 exceeding 3,200 GW with average waits past 8 years. Permitting reform is repeatedly attempted and repeatedly fails on coalition arithmetic. By 2028 the marginal hyperscale data center cannot site at scale anywhere in the continental US except a thin band of Texas, Wyoming, and the Mississippi Delta.</p>
+        <p>A Hormuz-style event in the Taiwan Strait in 2027 (short of war, but a six-week shipping disruption and a yearlong insurance premium repricing) reprices the entire chip supply chain. NVIDIA's GPU lead time stretches from 38 weeks to 70+ weeks. Allocation becomes overtly political. The Gulf states emerge as the third pole, not because of innovation but because they are the only place where 5 GW of new firm power can be permitted in under 18 months.</p>
+        <p>The EU AI Act enters full enforcement and bites harder than the megacaps expected. Two foundation labs suspend EU operations. Trust infrastructure forms, but as adversarial regulation rather than as market institution. AI notaries, model-audit firms, and AI insurance carriers become regulated industries, often state-affiliated.</p>
+      </section>
+
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-label">INTERCONNECTION QUEUE</div>
+          <div class="stat-value">3,200 GW</div>
+          <div class="stat-detail">by end-2027, average 8-yr wait</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">FRONTIER TRAINING RUN</div>
+          <div class="stat-value">$3-5B</div>
+          <div class="stat-detail">per run by 2028, 10x 2024</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">GULF SOVEREIGN CAPACITY</div>
+          <div class="stat-value">5+ GW</div>
+          <div class="stat-detail">commissioned by 2028</div>
+        </div>
+      </div>
+
+      <div class="what-where-grid">
+        <div>
+          <h4>Where the alpha lived</h4>
+          <ul class="bullets">
+            <li>Permit-and-power assets in Texas, the Gulf, the UAE: utility-bond yields plus 10-15% scarcity premium</li>
+            <li>Behind-the-meter generation at hyperscale</li>
+            <li>Sovereign-affiliated infrastructure funds (ADQ, PIF)</li>
+            <li>Chokepoint owners: TSMC, ASML, Amkor, the CoWoS OSATs</li>
+            <li>The compliance-and-trust layer (state-affiliated but durable)</li>
+            <li>Talent monopsonists, the 4-5 firms that could afford $50-100M signing packages</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Where the alpha did NOT live</h4>
+          <ul class="bullets">
+            <li>The application layer; margins reprice to whatever the model charges</li>
+            <li>Mid-tier neoclouds (acquired or financialized into compliance utilities)</li>
+            <li>Generalist AI funds; cannot access rationed compute, cannot buy chokepoint assets at reasonable price</li>
+            <li>Most physical-economy AI deployments; the buildout was too slow to penetrate the demographic transition</li>
+          </ul>
+        </div>
+      </div>
+
+      <section>
+        <h3>What this means for S2G.</h3>
+        <p>Mixed. S2G is well-positioned in energy infrastructure and benefits from the energy-AI nexus repricing. The Mitra-EV, ANA-Energy, Echandia portfolio reads correctly here. Special Opportunities (structured finance against behind-the-meter assets) is highly relevant.</p>
+        <p>S2G is poorly positioned to capture the <em>full</em> alpha because the biggest pools (sovereign capital and chokepoint equity) are not where their LP base sits. The market-builder narrative gets a partial vindication: capital structure matters, but mostly as a way to get exposure to the rentier assets, not as a way to build new categories.</p>
+        <p class="pull-quote">"The alpha is mostly in the assets themselves. The capital architecture is the wrapper, not the prize."</p>
+        <p><strong>Panel weighting: ~30-35%.</strong> The modal scenario. Predetermined elements (power constraint, partial bifurcation, demographic crunch, climate physical risk) are all in motion. Friction binding requires modest additional pressure, not new shocks.</p>
+      </section>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCENARIO C ============ -->
+<section class="scenario scenario-C" id="scenario-C">
+  <div class="wrap">
+    <div class="scenario-head">
+      <div>
+        <div class="scenario-tag">
+          <span class="scenario-letter">C</span>
+          <div>
+            <div class="scenario-position">WORLD &times; FRICTIONLESS</div>
+            <div class="scenario-name">Cambrian<br />Atoms</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="scenario-oneline">"Value diffuses to the physical economy and the buildout proceeds smoothly. AI penetrates food, energy, and oceans. The alpha is operational, not architectural."</p>
+      </div>
+    </div>
+    <div class="scenario-body">
+
+      <section>
+        <h3>The world in 2030.</h3>
+        <p>The scenario the techno-optimists have been promising and the S2G report half-believes. By 2028, generative AI is doing for the physical economy what the early internet did for retail in 1999 to 2003: clumsy at first, then increasingly load-bearing, then suddenly the default.</p>
+        <p>Yield-prediction models running on hyperspectral satellite plus farm-level sensor data give large-acre operators a 12 to 18% margin lift across a full season. The Climate Corporation-shaped vendors who failed in 2014-2020 have been replaced by a new cohort that solved the data-integration problem (LLMs ate the ERP) and the deployment problem (foundation models eliminated the bespoke ML team requirement). John Deere's See &amp; Spray and Blue River-class systems are now table stakes.</p>
+        <p>Aquaculture has been transformed. Real-time biological monitoring cut salmon mortality by 35 to 50% by 2029. Cold-chain logistics platforms eliminated 25% of seafood spoilage. The $1.5T aquaculture investment thesis the S2G report cites is visibly underway. Port-routing AI cut Hormuz-style insurance shocks. In energy, grid-edge storage plus AI-optimized dispatch unlocked tens of gigawatts of behind-the-meter capacity. Industrial AI saved 15 to 20% on industrial heat and process loads.</p>
+        <p>The model layer commoditized. By 2028 GPT-6-class capability runs on open weights. Anthropic and OpenAI went public in 2027 at sober multiples. The 4-lab oligopoly is intact but the margin structure looks like cellular telecom in 2005, not Microsoft in 1998.</p>
+      </section>
+
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-label">AG MARGIN LIFT</div>
+          <div class="stat-value">12-18%</div>
+          <div class="stat-detail">on large-acre row-crop operators</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">SALMON MORTALITY</div>
+          <div class="stat-value">&minus;35-50%</div>
+          <div class="stat-detail">via real-time biological monitoring</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">INDUSTRIAL AI SAVINGS</div>
+          <div class="stat-value">15-20%</div>
+          <div class="stat-detail">on heat and process loads</div>
+        </div>
+      </div>
+
+      <div class="what-where-grid">
+        <div>
+          <h4>Where the alpha lived</h4>
+          <ul class="bullets">
+            <li>Operator-partnered ag platforms with full-stack integration (25-35% EBITDA, 8-10x revenue multiples)</li>
+            <li>Aquaculture full-stack platforms: production + monitoring + logistics + processing</li>
+            <li>Grid-edge storage and AI dispatch operating companies</li>
+            <li>Industrial AI vertical specialists (cold chain, ports, manufacturing efficiency)</li>
+            <li>Enterprise agent companies that achieved scale (Sierra-class, Harvey-class, and the ag and energy equivalents)</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Where the alpha did NOT live</h4>
+          <ul class="bullets">
+            <li>Foundation-lab equity after 2027; commoditized</li>
+            <li>Mid-tier hyperscalers; compressed</li>
+            <li>Picks-and-shovels infrastructure plays; the buildout finished without rationing</li>
+            <li>Pure-licensing IP plays in AI</li>
+            <li>Sovereign AI infrastructure not paired with a real operating company</li>
+          </ul>
+        </div>
+      </div>
+
+      <section>
+        <h3>What this means for S2G.</h3>
+        <p>S2G's <em>partial</em> home field. The three-sector focus is vindicated. Clear Frontier and the bespoke-fund cohort earn excellent returns. Growth equity into the missing middle works because the missing middle is real and the operators emerge.</p>
+        <p>BUT: capital architecture innovation is not the differentiating edge here. Domain expertise is. S2G's specific advantage is sector knowledge, operator networks, and willingness to underwrite biological / operational variance. The alpha is in picking the right operators, not inventing the right vehicle.</p>
+        <p class="pull-quote">"S2G should want this scenario, but should not over-allocate to it. The alpha here is operational, and S2G's edge in operational alpha is real but bounded."</p>
+        <p><strong>Panel weighting: ~20-25%.</strong> Plausible, requires all four constraint-release conditions (power, geopolitics, trust, capability) to roll the right way over 3-5 years.</p>
+      </section>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCENARIO D (FEATURED) ============ -->
+<section class="scenario scenario-D" id="scenario-D">
+  <div class="wrap">
+    <div class="scenario-head">
+      <div>
+        <div class="scenario-tag">
+          <span class="scenario-letter">D</span>
+          <div>
+            <div class="scenario-position">WORLD &times; CONSTRAINED &middot; S2G HOME FIELD</div>
+            <div class="scenario-name">Financing<br />Reality</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="scenario-oneline">"Value diffuses to the physical economy AND constraints bite. The financeability gap stays open wider, longer. Capital architecture <em>is</em> the alpha. The joint-stock-company moment."</p>
+      </div>
+    </div>
+    <div class="scenario-body">
+
+      <section>
+        <h3>The world in 2030.</h3>
+        <p>This is the scenario the S2G report describes. By 2028 it is increasingly visible that gen AI is producing real economic value across the physical economy (yields up, dispatch smarter, freight more efficient, monitoring real-time) AND that conventional capital markets cannot price it. The two trends together are what creates the seam where the alpha lives.</p>
+        <p>Constraints bite, but not catastrophically. Power buildout is slow but not stalled. Geopolitics holds at partial bifurcation, but a Taiwan-adjacent event in 2027 (not war, but a serious disruption) reprices insurance, lead times, and risk premia across the entire AI supply chain. The EU AI Act bites harder than expected. The trust layer forms slowly, after three high-profile AI failures (a medical AI, an agentic trading system, an autonomous fishing-quota system) created the legibility of "AI risk" the trust infrastructure needed to price against.</p>
+        <p>Meanwhile the operating reality across food, energy, and oceans is genuinely transformed. The 58-year-old farmer still didn't adopt, but his 36-year-old farm manager did, and the resulting platform-operator class (5,000 to 50,000 acres, AI-enabled, multi-revenue-stream) is a real category that needs a real capital partner.</p>
+        <p>The capital markets failed to keep up. Banks didn't underwrite the new asset class because nothing fit their templates. Project finance shops wouldn't touch operating-stage businesses below their minimum check size. Growth equity continued its retreat. <strong>The financeability gap stayed open. And got wider as economic value accelerated.</strong></p>
+      </section>
+
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-label">PHYS-ECON PRODUCTIVITY</div>
+          <div class="stat-value">8-12%</div>
+          <div class="stat-detail">per sector by 2027, accelerating</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">10Y TREASURY</div>
+          <div class="stat-value">4.5-6%</div>
+          <div class="stat-detail">through 2028, refinancing risk priced</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">NEW ASSET CLASSES</div>
+          <div class="stat-value">5</div>
+          <div class="stat-detail">capital-architecture innovations of consequence</div>
+        </div>
+      </div>
+
+      <section>
+        <h3>Where the alpha lived: five new capital architectures.</h3>
+        <ul class="bullets">
+          <li><strong>Tranched, milestone-linked operator-platform equity</strong> for ag, aquaculture, and grid-edge. The Clear Frontier model expands into 6-8 vertical-specific bespoke funds. <em>Asset class size by 2030: $80-150B AUM.</em></li>
+          <li><strong>Compute-capacity offtake securitization.</strong> GPU portfolios with contracted hyperscaler / neocloud offtake, financed by long-duration credit. <em>$200-400B by 2030.</em> The single largest white-space opportunity, currently un-served by any major fund.</li>
+          <li><strong>Climate-variance-linked structured products</strong> that monetize AI-driven yield and loss reduction. Pays AI-enabled operators for variance reduction (e.g., reduced crop-insurance payouts). <em>Nascent but on the curve.</em></li>
+          <li><strong>Power-and-AI coupled offtake instruments</strong> linking behind-the-meter generation to AI compute demand on 10-15 year horizons. <em>$50-100B by 2030.</em></li>
+          <li><strong>Trust-layer financing.</strong> State-adjacent but private-market-financed institutions that provide AI verification, audit, and licensing as a utility. <em>$20-40B by 2030.</em> The under-developed strategy track that S2G's report did not name.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>What this means for S2G.</h3>
+        <p>Home field, fully vindicated. The three-strategy framework maps directly onto the asset classes that emerge.</p>
+        <p><strong>Special Opportunities</strong> funds the asset-backed bridge financings across the missing middle. <strong>Bespoke Funds</strong> vehicles like Clear Frontier expand into 6-8 verticals, each purpose-built for an operating-economic reality conventional capital couldn't reach. <strong>Growth Equity</strong> funds the platforms once they've crossed the financeability threshold built by Special Opportunities.</p>
+        <p class="pull-quote">"The fit-for-purpose vehicles for the AI-coupled physical economy precede the category they enable. We are now in that pre-category moment."</p>
+        <p><strong>Panel weighting: ~20-25%.</strong> Plausible. Requires the <em>combination</em> of (a) constraints continuing to bite, (b) AI value continuing to materialize in physical sectors, (c) conventional capital continuing to be slow. Each is independently moderate-to-likely.</p>
+      </section>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ STRATEGIC READ ============ -->
+<section class="strategy">
+  <div class="wrap">
+    <div class="strategy-grid">
+      <div>
+        <span class="eyebrow">THE STRATEGIC READ</span>
+        <h2 class="section-title strategic-read">An asymmetric bet.</h2>
+        <p class="lead">Across four scenarios, S2G's three-strategy framework produces a strikingly asymmetric payoff. In two scenarios the alpha thesis dissolves to sector specialism. In two scenarios the capital-architecture innovation pays off, and in one of those (Scenario D) it pays off generationally.</p>
+        <p>The strategic argument is not "will gen AI deliver?" but "<em>how heavily should you bet on the home field, given that the downside in the wrong scenarios is small and the upside in the right scenario is uniquely large?</em>"</p>
+        <p class="pull-quote">"S2G should position for D, hedge for B, and tolerate A or C without distress."</p>
+      </div>
+      <div>
+        <span class="meta-label">PERFORMANCE BY STRATEGY</span>
+        <div class="strategy-table">
+          <div class="strategy-row header">
+            <div></div>
+            <div>A</div>
+            <div>B</div>
+            <div>C</div>
+            <div>D</div>
+          </div>
+          <div class="strategy-row">
+            <div class="strat-name">Special Opportunities<br /><span style="font-weight:400; color:rgba(255,255,255,0.5); font-size: 0.78rem;">Structured finance, asset-backed</span></div>
+            <div><span class="grade moderate">MOD</span></div>
+            <div><span class="grade strong">STR</span></div>
+            <div><span class="grade moderate">MOD</span></div>
+            <div><span class="grade excellent">EXC</span></div>
+          </div>
+          <div class="strategy-row">
+            <div class="strat-name">Bespoke Funds<br /><span style="font-weight:400; color:rgba(255,255,255,0.5); font-size: 0.78rem;">Clear Frontier-class vehicles</span></div>
+            <div><span class="grade moderate">MOD</span></div>
+            <div><span class="grade moderate">MOD</span></div>
+            <div><span class="grade excellent">EXC</span></div>
+            <div><span class="grade excellent">EXC</span></div>
+          </div>
+          <div class="strategy-row">
+            <div class="strat-name">Growth Equity<br /><span style="font-weight:400; color:rgba(255,255,255,0.5); font-size: 0.78rem;">Missing middle, $50-200M checks</span></div>
+            <div><span class="grade weak">LOW</span></div>
+            <div><span class="grade moderate">MOD</span></div>
+            <div><span class="grade strong">STR</span></div>
+            <div><span class="grade strong">STR</span></div>
+          </div>
+          <div class="strategy-row">
+            <div class="strat-name">Trust-layer financing<br /><span style="font-weight:400; color:rgba(255,255,255,0.5); font-size: 0.78rem;">Proposed fourth track (Aisha)</span></div>
+            <div><span class="grade weak">LOW</span></div>
+            <div><span class="grade strong">STR</span></div>
+            <div><span class="grade moderate">MOD</span></div>
+            <div><span class="grade excellent">EXC</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLOSING TEASE ============ -->
+<section class="closing">
+  <div class="wrap narrow">
+    <span class="eyebrow">A REFLECTION, NOT A RECOMMENDATION</span>
+    <h2 class="display">The recognition has only just begun.</h2>
+    <p class="lead-large">Three things become visible from these scenarios that were not visible from the report alone.</p>
+
+    <ol class="bullets" style="padding-left: 0; list-style: none; margin-bottom: 3rem;">
+      <li><strong>S2G's worldview has a home field, Scenario D, where it is the most powerful frame available.</strong> In the other three scenarios the playbook still produces respectable returns through sector specialization. The unique market-builder alpha is conditional.</li>
+      <li><strong>The trust-and-verification layer is under-developed in the report.</strong> Adding it as a fourth strategy track would round out the architecture. Consistent with the frame, currently un-served by competitors.</li>
+      <li><strong>The asymmetric bet structure is the real S2G argument.</strong> In A and C, S2G earns sector-specialist returns regardless of AI. In B and D, additional alpha is captured through capital architecture. The risk of being wrong is small; the upside of being right is generational.</li>
+    </ol>
+
+    <p class="lead-large" style="font-style: italic; color: rgba(255,255,255,0.78); margin-top: 3rem;">"The lesson of the last 300 years is that alpha does not go to those who wait for the market to mature, but to the market builders who recognize the gap between a new economic order and the instruments required to finance it."</p>
+    <p style="font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 0.6rem;">Financing Reality &middot; p.53</p>
+
+    <div class="signoff">
+      <div class="from">
+        Prepared by<br />
+        <span style="color:var(--accent); font-weight: 600;">Remix Partners</span><br />
+        Generative AI consultancy &middot; May 2026
+      </div>
+      <div class="for-block">
+        For<br />
+        <span class="name">S2G Investments</span><br />
+        A conversation we'd like to continue
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">REMIX PARTNERS &middot; FOR S2G INVESTMENTS &middot; MAY 2026 &middot; CONFIDENTIAL</div>
+</footer>
+
+</div><!-- /.report-content -->
+
+<script>
+  // Password gate. Password "s2galpha".
+  function h(s){let H=0;for(let i=0;i<s.length;i++){H=((H<<5)-H)+s.charCodeAt(i);H|=0;}return H;}
+  var TARGET = h('s2galpha');
+  function unlock(){ document.body.classList.add('unlocked'); }
+  if (sessionStorage.getItem('s2g_unlocked')==='1') { unlock(); }
+  document.getElementById('gate-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    var v = document.getElementById('pw').value;
+    if (h(v) === TARGET) {
+      sessionStorage.setItem('s2g_unlocked','1');
+      unlock();
+    } else {
+      document.getElementById('err').style.display = 'block';
+      document.getElementById('pw').value = '';
+      document.getElementById('pw').focus();
+    }
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && reveals.length) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.15 });
+    reveals.forEach(r => io.observe(r));
+  }
+</script>
+
+</body>
+</html>
